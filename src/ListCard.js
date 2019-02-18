@@ -52,6 +52,7 @@ export default class ListCard extends React.Component {
           className={this.state.showListCard ? "card-body" : "hidden"}
           >
           <input
+            aria-label="search university by keyword"
             type="text"
             className="form-control"
             placeholder="查询"

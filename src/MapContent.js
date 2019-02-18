@@ -5,6 +5,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import escapeRegExp from "escape-string-regexp";
 import sizeMe from 'react-sizeme';
 import ListCard from "./ListCard";
+import LoadingContainer from './LoadingContainer';
 
 export class MapContent extends React.Component {
   static defaultProps = {
@@ -68,6 +69,8 @@ export class MapContent extends React.Component {
 
     FetchApi.getUniversityDetailById(universityId).then(data => {
       this.setState({ venueData: data });
+    }).catch(e => {
+        this.setState({ venueData: {status : 'error'} });
     });
   };
 
@@ -154,5 +157,6 @@ export class MapContent extends React.Component {
 }
 
 export default sizeMe()(GoogleApiWrapper({
-  apiKey: "AIzaSyCacmIGcWsolGnXLp71cBM_My9axyprocM"
+  apiKey: "AIzaSyCacmIGcWsolGnXLp71cBM_My9axyprocM",
+  LoadingContainer: LoadingContainer
 })(MapContent));
